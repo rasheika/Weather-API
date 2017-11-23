@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 ''' strip and split text[:60]'''
+
 def kingston():
 	URL = requests.get("https://www.accuweather.com/en/jm/kingston/214971/weather-forecast/214971")
 	HTML = BeautifulSoup(URL.content,"html.parser")
@@ -158,38 +159,32 @@ def stcatherine():
 def process_default():
 	print("Error")
 
-print("CURRENT WEATHER SYSTEM:\n")
-print("1.\tKingston")
-print("2.\tSt. Andrew")
-print("3.\tSt. Thomas")
-print("4.\tPortland")
-print("5.\tSt. Ann")
-print("6.\tSt. Mary")
-print("7.\tTrelawny")
-print("8.\tSt. James")
-print("9.\tHanover")
-print("10.\tWestmoreland")
-print("11.\tSt. Elizabeth")
-print("12.\tManchester")
-print("13.\tClarendon")
-print("14.\tSt. Catherine")
+parishes = ["Kingston", "St. Andrew", "St. Thomas", "Portland", "St. Ann", "St. Mary", 
+"Trelawny", "St. James", "Hanover", "Westmoreland", "St. Elizabeth","Manchester", "Clarendon", "St. Catherine"]
 
-num=int(input("\nEnter a parish code(1-14) to view the current weather:\t"))
-options = {
-1: kingston,
-2: standrew,
-3: stthomas,
-4: portland,
-5: stann,
-6: stmary,
-7: trelawny,
-8: stjames,
-9: hanover,
-10: westmoreland,
-11: stelizabeth,
-12: manchester,
-13: clarendon,
-14: stcatherine,
-#KeyError: process_default()
-}
-options[num]()
+print("CURRENT WEATHER SYSTEM:\n")
+
+for x in range(0,14):
+	print(str(x+1)+".\t", parishes[x])
+
+try:
+	num=int(input("\nEnter a parish code(1-14) to view the current weather:\t"))
+	options = {
+	1: kingston,
+	2: standrew,
+	3: stthomas,
+	4: portland,
+	5: stann,
+	6: stmary,
+	7: trelawny,
+	8: stjames,
+	9: hanover,
+	10: westmoreland,
+	11: stelizabeth,
+	12: manchester,
+	13: clarendon,
+	14: stcatherine,
+	}
+	options[num]()
+except:
+	print("Invalid Key!")
